@@ -17,6 +17,7 @@ var parseInput = function(req, response) {
     name: ent.encode(req.body.name || "Nobody"),
     timestamp: Date.now()
   };
+  if (!input.text) return;
   buffer.push(input);
   buffer = buffer.slice(-20);
   console.log("%s: %s", req.body.name, req.body.text);

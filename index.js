@@ -6,10 +6,11 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 var server = app.listen(3000);
+
+app.use(bodyParser.json({ type: "application/*" }));
+app.use(bodyParser.json({ type: "text/*" }));
+app.use(bodyParser.json({ type: "json" }));
 
 app.all("*", function(req, response, next) {
   response.header("Access-Control-Allow-Origin", "*");
