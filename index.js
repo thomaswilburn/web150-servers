@@ -11,5 +11,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var server = app.listen(3000);
 
+app.all("*", function(req, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  response.header("Access-Control-Allow-Headers", req.get("Access-Control-Request-Headers"));
+  next();
+});
+
 app.route("/chat").get(chat).post(chat);
 app.get("/social", social);

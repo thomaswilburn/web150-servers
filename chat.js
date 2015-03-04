@@ -4,11 +4,9 @@ var buffer = [];
 
 var sendLines = function(req, response) {
   var since = req.query.since || req.body.since;
-  if (since) {
-    return response.jsonp(buffer.filter(function(x) { return x.timestamp > since }));
-  }
+  var lines = since ? buffer.filter(function(x) { return x.timestamp > since }) : buffer;
   response.jsonp({
-    lines: buffer,
+    lines: lines,
     at: Date.now()
   });
 };
