@@ -13,6 +13,12 @@ app.use(bodyParser.json({ type: "application/*" }));
 app.use(bodyParser.json({ type: "text/*" }));
 app.use(bodyParser.json({ type: "json" }));
 
+//logger
+app.use(function(req, res, next) {
+  console.log(req.path, req.body, req.ip);
+  next();
+});
+
 app.all("*", function(req, response, next) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
