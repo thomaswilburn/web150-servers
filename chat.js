@@ -14,7 +14,7 @@ var sendLines = function(req, response) {
 var parseInput = function(req, response) {
   var input = {
     text: ent.encode(req.body.text || ""),
-    name: ent.encode(req.body.name || "Nobody"),
+    name: ent.encode((req.body.name || "Nobody").substr(0, 1000)),
     timestamp: Date.now()
   };
   if (!input.text) return;

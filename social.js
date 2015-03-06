@@ -25,6 +25,7 @@ var getStatus = function() {
 module.exports = function(req, response) {
   var length = req.query.length || 20;
   var updates = [];
+  if (length > 20) length = 20;
   for (var i = 0; i < length; i++) {
     updates.push(getStatus());
   }
